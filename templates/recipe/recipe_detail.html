@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+
+{% block title %}Recipe Details{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <section class="section" style="width: 85%; margin-left: 50px;">
+        <div class="card">
+            
+            <div class="card">
+                <header class="card-header">
+                        <p class="card-header-title is-justify-content-center">
+                            {{recipe.title}}
+                        </p>
+                </header>
+            </div>
+            
+            <div class="card-image">
+                <figure class="image is-512x512">
+                    <img src="{{recipe.image.url}}" alt="recipe image">
+                </figure>
+            </div>
+    
+            <div class="card">
+                <div class="card-content">
+                    <div class="content">
+                        {{recipe.content}}
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <footer class="card-footer">
+                    <a href="{% url 'recipe_list' %}" class="card-footer-item">Go To Recipes</a>
+                    <a href="{% url 'recipe_edit' recipe.pk %}" class="card-footer-item">Edit</a>
+                    <a href="{% url 'recipe_delete' recipe.pk %}" class="card-footer-item">Delete</a>
+                </footer>
+            </div>
+            <div class="card">
+                <header class="card-header">
+                    <p class="card-header-title">
+                        
+                    </p>
+                </header>
+                </div>
+            </div>
+    </section>
+</div>
+
+{% endblock content %}

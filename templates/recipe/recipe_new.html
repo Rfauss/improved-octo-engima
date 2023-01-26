@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}Create New Recipe{% endblock title %}
+
+{% block content %}
+<section class="section">
+
+    <form action="" method="post" enctype="multipart/form-data" class="field">
+
+        {% csrf_token %}
+        <div class="field">
+            <label class="label">What are you making?</label>
+            <div class="control">
+                {% render_field form.title type="text" class="input" %}
+            </div>
+            
+            <label class="label">Put your trade secrets here:</label>
+            <div class="control">
+                {% render_field form.content type="text" class="input" style="height: auto;"  %}
+            </div>
+        </div>
+        <div class="field">
+            <label class="label">Upload an image here:</label>
+            <div class="control">
+                {% render_field form.image type="file" class="input is-focused" style="margin-top: 15px;" name="image" %}
+            </div>
+        </div>
+        <div class="field">
+            <button class="button is-success is-light" style="margin-top: 5px;" type='submit'>Submit</button>
+            <a href="{% url 'recipe_list' %}" class="button is-danger is-light" style="margin-top: 5px; margin-left: 10px;">Cancel</a>
+        </div>
+    </form>
+
+
+</section>
+{% endblock content %}

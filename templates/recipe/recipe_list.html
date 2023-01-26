@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}Recipes{% endblock title %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <table class="table is-hoverable">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Content</th>
+                    <th>Date</th>
+                    <th>Author</th>
+                    <th>View Edit Delete</th>
+                </tr>
+            </thead>
+                <tbody>
+                    {% for recipe in recipe_list %}
+                        <tr>
+                            <td>
+                                {{recipe.title|truncatewords:4}}
+                            </td>
+                            <td>
+                                {{recipe.content|truncatewords:13}}
+                            </td>
+                            <td>
+                                {{recipe.date}}
+                            </td>
+                            <td>
+                                {{recipe.owner}}
+                            </td>
+                            <td>
+                                <a href="{% url 'recipe_detail' recipe.pk %}">View</a> | <a href="{% url 'recipe_edit' recipe.pk %}">Edit</a> | <a href="{% url 'recipe_delete' recipe.pk %}">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href="{% url 'recipe_new' %}" class="button is-primary">Create New</a>
+    </div>
+</section>
+
+{% endblock content %}

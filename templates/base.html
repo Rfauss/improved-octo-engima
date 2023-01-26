@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
+    <title>{% block title %}Meal-Builder{% endblock title %}</title>
+</head>
+
+<header>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="https://bulma.io">
+            <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+            </a>
+        
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            </a>
+        </div>
+        
+        <div class="navbar-menu">
+            <div class="navbar-start">
+            <a class="navbar-item" href="{% url 'meal_plan' %}">
+                Meal Plan
+            </a>
+        
+            <a class="navbar-item">
+                Brainstorm with Butter
+            </a>
+        
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                More
+                </a>
+        
+                <div class="navbar-dropdown">
+                <a class="navbar-item" href="{% url 'about' %}">
+                    About
+                </a>
+                <a class="navbar-item">
+                    Butter's Ideation
+                </a>
+                <a class="navbar-item" href="{% url 'recipe_list' %}">
+                    Your Recipe's
+                </a>
+                <a class="navbar-item">
+                    Your Pantry
+                </a>
+                <hr class="navbar-divider">
+                <a class="navbar-item" href="{% url 'home' %}" >
+                    Home
+                </a>
+                </div>
+            </div>
+            </div>
+        
+            <div class="navbar-end">
+            <div class="navbar-item">
+                {% if user.is_authenticated %}
+
+                <div class="buttons">
+                    <a class="button is-light" href="{% url 'logout' %}">Logout</a>
+                </div>
+                {% else %}
+                <div class="buttons">
+                    <a class="button is-primary" href="{% url 'signup' %}">
+                        <strong>Sign up</strong>
+                    </a>
+                    <a class="button is-light" href="{% url 'login' %}">
+                        Log in
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+            </div>
+        </div>
+        </nav>
+</header>
+<body>
+    {% block content %}
+    
+    {% endblock content %}
+</body>
+</html>
